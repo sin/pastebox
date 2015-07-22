@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+<div id="mocha"></div>
+<script src="../node_modules/should/should.js"></script>
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../public/libs/requirejs/require.js"></script>
+<script>
+    mocha.setup('bdd');
+
+    //noinspection JSFileReferences
+    require.config({
+        paths: {
+            js: '../public/js',
+            jquery: '../public/libs/jquery/dist/jquery',
+            underscore: '../public/libs/lodash/lodash',
+            backbone: '../public/libs/backbone/backbone',
+            marionette: '../public/libs/marionette/lib/backbone.marionette',
+            mustache: '../public/libs/mustache/mustache',
+            text: '../public/libs/requirejs-text/text'
+        }
+    });
+
+    var specs = [];
+
+    specs.push('spec/models/testModel.js');
+
+    require(specs, function() {
+        if (window.mochaPhantomJS) {
+            mochaPhantomJS.run();
+        } else {
+            mocha.run();
+        }
+    });
+</script>
+</body>
+</html>

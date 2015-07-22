@@ -1,0 +1,34 @@
+{
+  "name": "pastebox",
+  "version": "0.0.1",
+  "authors": [
+    "Mateusz Sienkan <mateusz@sienkan.pl>"
+  ],
+  "description": "Simple pastebin application.",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "pastebin",
+    "snippets"
+  ],
+  "license": "MIT",
+  "homepage": "https:/github.com/sin/pastebox",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.0",
+    "backbone": "~1.2.1",
+    "marionette": "~2.4.2",
+    "mustache": "~2.1.2",
+    "requirejs": "~2.1.19",
+    "requirejs-text": "~2.0.14"
+  }
+}

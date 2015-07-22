@@ -1,0 +1,30 @@
+{
+  "name": "pastebox",
+  "version": "0.0.1",
+  "description": "Simple pastebin application.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha-phantomjs -R min test/runner.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sin/pastebox.git"
+  },
+  "keywords": [
+    "pastebin",
+    "snippets"
+  ],
+  "author": "Mateusz Sienkan <mateusz@sienkan.pl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sin/pastebox/issues"
+  },
+  "homepage": "https://github.com/sin/pastebox#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-mocha-phantomjs": "^0.8.0",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}
