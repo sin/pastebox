@@ -1,6 +1,12 @@
 module.exports = function(gulp, config, plugins, watch) {
     'use strict';
 
+    if (watch) {
+        return function() {
+            gulp.watch([config.dir.src + 'less/**/*.less'], ['build:styles']);
+        };
+    }
+
     return function(cb) {
         return gulp.src(config.dir.src + 'less/main.less')
             .pipe(plugins.sourcemaps.init())

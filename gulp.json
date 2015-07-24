@@ -1,6 +1,5 @@
 {
   "env": "dev",
-  "scripts": "js",
   "styles": "less",
   "test": "mocha-phantomjs",
   "serve": "browser-sync",
@@ -9,9 +8,6 @@
     "src": "./public/",
     "tasks": "./tasks/",
     "test": "./test/"
-  },
-  "files": {
-    "css": "styles.js"
   },
   "less": {
     "paths": [
