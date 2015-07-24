@@ -1,0 +1,37 @@
+@import 'bootstrap';
+@import 'login';
+@import 'navbar';
+@import 'sidebar';
+@import 'list';
+@import 'preview';
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+}
+
+.app {
+    display: flex;
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.column {
+    overflow: scroll;
+}
+
+.sidebar {
+    width: 200px;
+}
+
+.list {
+    flex: 1;
+    min-width: 400px;
+}
+
+.preview {
+    flex: 2;
+}
