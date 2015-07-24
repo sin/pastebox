@@ -21,16 +21,17 @@
   },
   "homepage": "https://github.com/sin/pastebox#readme",
   "devDependencies": {
+    "browser-sync": "^2.8.0",
     "gulp": "^3.9.0",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-mocha-phantomjs": "^0.8.0",
-    "mocha": "^2.2.5",
-    "should": "^7.0.2",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-less": "^3.0.3",
+    "gulp-load-plugins": "^0.10.0",
     "gulp-minify-css": "^1.2.0",
+    "gulp-mocha-phantomjs": "^0.8.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-util": "^3.0.6"
+    "gulp-util": "^3.0.6",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
   }
 }

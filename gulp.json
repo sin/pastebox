@@ -14,5 +14,41 @@
       "./public/less/",
       "./public/libs/bootstrap/less"
     ]
+  },
+  "browsersync": {
+    "ui": {
+      "port": 3001,
+      "weinre": {
+        "port": 3002
+      }
+    },
+    "files": ["./public/*.html", "./public/**/*.css", "./dist/**/*.js"],
+    "server": {
+      "baseDir": "./public/",
+      "directory": false
+    },
+    "port": 3000,
+    "https": false,
+    "ghostMode": {
+      "clicks": true,
+      "forms": true,
+      "scroll": true
+    },
+    "logLevel": "info",
+    "logConnections": false,
+    "logFileChanges": true,
+    "logSnippet": true,
+    "open": false,
+    "browser": [
+      "firefox",
+      "google chrome"
+    ],
+    "notify": true,
+    "scrollProportionally": true,
+    "scrollThrottle": 0,
+    "reloadDelay": 0,
+    "injectChanges": true,
+    "timestamps": true,
+    "tunnel": false
   }
 }
