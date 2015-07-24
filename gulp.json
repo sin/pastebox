@@ -1,16 +1,22 @@
 {
   "env": "dev",
   "scripts": "js",
-  "style": "less",
+  "styles": "less",
   "test": "mocha-phantomjs",
   "serve": "browser-sync",
   "dir": {
-    "dist": "./dist/",
+    "dist": "./public/",
     "src": "./public/",
     "tasks": "./tasks/",
     "test": "./test/"
   },
   "files": {
     "css": "styles.js"
+  },
+  "less": {
+    "paths": [
+      "./public/less/",
+      "./public/libs/bootstrap/less"
+    ]
   }
 }

@@ -7,4 +7,5 @@ function getTask(task, watch) {
 }
 
 gulp.task('test', getTask(config.test, false));
+gulp.task('styles', getTask(config.styles, false));
 gulp.task('default', ['test']);

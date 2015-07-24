@@ -29,6 +29,7 @@
     "marionette": "~2.4.2",
     "mustache": "~2.1.2",
     "requirejs": "~2.1.19",
-    "requirejs-text": "~2.0.14"
+    "requirejs-text": "~2.0.14",
+    "bootstrap": "~3.3.5"
   }
 }
