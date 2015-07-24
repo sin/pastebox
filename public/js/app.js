@@ -1,10 +1,11 @@
 //noinspection JSUnusedLocalSymbols
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
+define(['jquery', 'underscore', 'backbone', 'prism'], function($, _, Backbone, Prism) {
     var init = function() {
         console.log('Hello world');
+        Prism.highlightAll();
     };
 
     return {
-        initialize: init
+        init: init
     };
 });

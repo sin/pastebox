@@ -30,6 +30,7 @@
     "mustache": "~2.1.2",
     "requirejs": "~2.1.19",
     "requirejs-text": "~2.0.14",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "prism": "~1.0.0"
   }
 }

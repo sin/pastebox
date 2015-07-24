@@ -12,7 +12,8 @@
   "less": {
     "paths": [
       "./public/less/",
-      "./public/libs/bootstrap/less"
+      "./public/libs/bootstrap/less",
+      "./public/libs/prism/themes"
     ]
   },
   "browsersync": {
