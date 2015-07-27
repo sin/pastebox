@@ -1,0 +1,4 @@
+{
+  "secret": "ee3abe92ef53a7798ea504c8dbe4f61c",
+  "database": "mongodb://localhost:27017/"
+}
