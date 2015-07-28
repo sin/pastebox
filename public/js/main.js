@@ -9,13 +9,18 @@ require.config({
         text: '../libs/requirejs-text/text',
         prism: '../libs/prism/prism'
     },
+    waitSeconds: 1,
     shim: {
         prism: {
             exports: 'Prism'
+        },
+        marionette: {
+            deps: ['backbone'],
+            exports: 'Marionette'
         }
     }
 });
 
-require(['app'], function(App) {
-    App.init();
+require(['app'], function (app) {
+    app.start();
 });
