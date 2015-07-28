@@ -8,19 +8,19 @@ module.exports = function (req, res, next) {
     if (token) {
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
-                return res.send({success: false, message: 'Failed to authenticate token.'}, 401);
+                return res.status(401).send({success: false, message: 'Failed to authenticate token.'});
             } else {
                 if (decoded.exp <= Date.now()) {
-                    return res.send({success: false, message: 'Access token has expired.'}, 400);
+                    return res.status(400).send({success: false, message: 'Access token has expired.'});
                 }
 
                 User.findOne({_id: decoded._id}, function (err, user) {
                     if (err) {
-                        return res.send({success: false, message: 'Unauthenticated.'}, 401);
+                        return res.status(401).send({success: false, message: 'Unauthenticated.'});
                     }
 
                     if (!user) {
-                        return res.send({success: false, message: 'User not found.'}, 401);
+                        return res.status(401).send({success: false, message: 'User not found.'});
                     }
 
                     req.user = user;
@@ -29,6 +29,6 @@ module.exports = function (req, res, next) {
             }
         });
     } else {
-        return res.send({success: false, message: 'No token provided.'}, 403);
+        return res.status(403).send({success: false, message: 'No token provided.'});
     }
 };

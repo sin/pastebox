@@ -10,19 +10,19 @@ module.exports.set = function (app) {
         if (token) {
             jwt.verify(token, config.secret, function (err, decoded) {
                 if (err) {
-                    return res.send({success: false, message: 'Failed to authenticate token.'}, 401);
+                    return res.status(401).send({success: false, message: 'Failed to authenticate token.'});
                 } else {
                     if (decoded.exp <= Date.now()) {
-                        return res.send({success: false, message: 'Access token has expired.'}, 400);
+                        return res.status(400).send({success: false, message: 'Access token has expired.'});
                     }
 
                     User.findOne({_id: decoded._id}, function (err, user) {
                         if (err) {
-                            return res.send({success: false, message: 'Unauthenticated.'}, 401);
+                            return res.status(401).send({success: false, message: 'Unauthenticated.'});
                         }
 
                         if (!user) {
-                            return res.send({success: false, message: 'User not found.'}, 401);
+                            return res.status(401).send({success: false, message: 'User not found.'});
                         }
 
                         return res.status(200).json(user);
@@ -30,12 +30,11 @@ module.exports.set = function (app) {
                 }
             });
         } else {
-            return res.send({success: false, message: 'No token provided.'}, 403);
+            return res.status(403).send({success: false, message: 'No token provided.'});
         }
     });
 
     app.post('/login', function (req, res) {
-
         User.findOne({
             email: req.body.email
         }, function (err, user) {
@@ -43,7 +42,7 @@ module.exports.set = function (app) {
             if (err) throw err;
 
             if (!user) {
-                res.send({success: false, message: 'Authentication failed. User not found.'}, 401);
+                res.status(401).send({success: false, message: 'Authentication failed. User not found.'});
             } else if (user) {
                 user.comparePassword(req.body.password, function (err, isMatch) {
                     if (isMatch) {
@@ -51,14 +50,14 @@ module.exports.set = function (app) {
                             expiresInMinutes: 10080
                         });
 
-                        res.json({
+                        res.status(200).json({
                             success: true,
                             message: 'Authenticated!',
                             token: token,
                             user: user
                         });
                     } else {
-                        res.send({success: false, message: 'Authentication failed. Wrong password.'}, 401);
+                        res.status(401).send({success: false, message: 'Authentication failed. Wrong password.'});
                     }
                 });
             }
