@@ -22,7 +22,6 @@
     "disallowKeywordsOnNewLine": ["else"],
     "disallowMultipleLineBreaks": true,
     "disallowMultipleLineStrings": true,
-    "disallowMultipleVarDecl": true,
     "requireSpaceBeforeBlockStatements": true,
     "requireParenthesesAroundIIFE": true,
     "requireSpacesInConditionalExpression": true,

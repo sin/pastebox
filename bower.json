@@ -1,6 +1,6 @@
 {
   "name": "pastebox",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "authors": [
     "Mateusz Sienkan <mateusz@sienkan.pl>"
   ],
@@ -26,7 +26,7 @@
     "jquery": "~2.1.4",
     "lodash": "~3.10.0",
     "backbone": "~1.2.1",
-    "marionette": "~2.4.2",
+    "marionette": "~2.3.2",
     "mustache": "~2.1.2",
     "requirejs": "~2.1.19",
     "requirejs-text": "~2.0.14",
