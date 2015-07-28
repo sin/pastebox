@@ -1,7 +1,6 @@
 //noinspection JSUnusedLocalSymbols
 define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 'apps/auth/auth-router'],
-    function ($, _, Backbone, Marionette, Mustache, global, authRouter) {
-        var app = global;
+    function ($, _, Backbone, Marionette, Mustache, app, authRouter) {
 
         app.addRegions({
             main: '.app',
