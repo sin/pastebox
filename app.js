@@ -25,4 +25,8 @@ api.use(jwtAuth);
 
 routes(auth, api);
 
+app.get('*', function(request, response) {
+    response.sendfile('./public/index.html');
+});
+
 app.listen(8080);
