@@ -14,9 +14,13 @@ module.exports = function (req, res, next) {
                     return res.send({success: false, message: 'Access token has expired.'}, 400);
                 }
 
-                User.findOne({_id: decoded.iss}, function (err, user) {
+                User.findOne({_id: decoded._id}, function (err, user) {
                     if (err) {
                         return res.send({success: false, message: 'Unauthenticated.'}, 401);
+                    }
+
+                    if (!user) {
+                        return res.send({success: false, message: 'User not found.'}, 401);
                     }
 
                     req.user = user;

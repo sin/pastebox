@@ -4,6 +4,36 @@ var User = require('../models/user');
 
 module.exports.set = function (app) {
 
+    app.get('/login', function (req, res) {
+        var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+        if (token) {
+            jwt.verify(token, config.secret, function (err, decoded) {
+                if (err) {
+                    return res.send({success: false, message: 'Failed to authenticate token.'}, 401);
+                } else {
+                    if (decoded.exp <= Date.now()) {
+                        return res.send({success: false, message: 'Access token has expired.'}, 400);
+                    }
+
+                    User.findOne({_id: decoded._id}, function (err, user) {
+                        if (err) {
+                            return res.send({success: false, message: 'Unauthenticated.'}, 401);
+                        }
+
+                        if (!user) {
+                            return res.send({success: false, message: 'User not found.'}, 401);
+                        }
+
+                        return res.status(200).json(user);
+                    });
+                }
+            });
+        } else {
+            return res.send({success: false, message: 'No token provided.'}, 403);
+        }
+    });
+
     app.post('/login', function (req, res) {
 
         User.findOne({
