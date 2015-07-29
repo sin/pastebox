@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                 'click .signup-link': 'signup'
             },
 
-            serializeData: function(){
+            serializeData: function () {
                 return {
                     user: app.getUser()
                 };
@@ -35,12 +35,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                 app.trigger('auth:login');
             },
 
-            login: function () {
+            login: function (event) {
                 event.preventDefault();
                 app.trigger('auth:login');
             },
 
-            signup: function () {
+            signup: function (event) {
                 event.preventDefault();
                 app.trigger('auth:signup');
             }
