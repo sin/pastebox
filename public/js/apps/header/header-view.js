@@ -12,6 +12,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                 'click .signup-link': 'signup'
             },
 
+            serializeData: function(){
+                return {
+                    user: app.getUser()
+                };
+            },
+
             brand: function (event) {
                 event.preventDefault();
                 app.getUser() ? app.trigger('main') : app.trigger('auth:login');
@@ -37,15 +43,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
             signup: function () {
                 event.preventDefault();
                 app.trigger('auth:signup');
-            },
-
-            render: function () {
-                // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-                var rendered = Mustache.to_html(this.template, {user: app.getUser()});
-
-                // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-                $(this.el).html(rendered);
-                return this;
             }
         });
     });
