@@ -1,6 +1,6 @@
 //noinspection JSUnusedLocalSymbols
 define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
-        'apps/auth/auth-router', 'apps/main/main-router',],
+        'apps/auth/auth-router', 'apps/main/main-router'],
     function ($, _, Backbone, Marionette, Mustache, app) {
 
         app.addRegions({
@@ -53,7 +53,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
             backboneSync(method, model, options);
         };
 
-        Marionette.Renderer.render = function(template, data) {
+        Marionette.Renderer.render = function (template, data) {
             // jscs:disable
             return Mustache.to_html(template, data);
 
@@ -65,7 +65,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
             app.trigger('header:show');
             var route = app.getCurrentRoute(),
                 token = app.getToken(),
-                authenticate = function() {
+                authenticate = function () {
                     $.ajax({
                         url: '/auth/login',
                         type: 'get',
