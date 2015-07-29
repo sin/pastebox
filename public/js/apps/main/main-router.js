@@ -3,13 +3,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/m
 
         var Router = Marionette.AppRouter.extend({
             appRoutes: {
-                '': 'start'
+                '': 'show'
             }
         });
 
         var API = {
-            start: function () {
-                console.log('main route');
+            show: function () {
                 mainCtrl.show();
             }
         };
@@ -23,4 +22,8 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/m
         app.on('main', function () {
             app.navigate('', {trigger: true});
         });
+
+        return {
+            show: API.show
+        };
     });
