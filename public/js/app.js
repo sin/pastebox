@@ -52,7 +52,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                 };
             }
 
-            backboneSync(method, model, options);
+            return backboneSync(method, model, options);
         };
 
         Marionette.Renderer.render = function (template, data) {
