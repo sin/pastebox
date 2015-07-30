@@ -32,6 +32,7 @@
     "requirejs-text": "~2.0.14",
     "bootstrap": "~3.3.5",
     "prism": "~1.0.0",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "mousetrap": "~1.5.3"
   }
 }

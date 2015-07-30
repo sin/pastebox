@@ -7,7 +7,8 @@ require.config({
         marionette: '../libs/marionette/lib/backbone.marionette',
         mustache: '../libs/mustache/mustache',
         text: '../libs/requirejs-text/text',
-        prism: '../libs/prism/prism'
+        prism: '../libs/prism/prism',
+        mousetrap: '../libs/mousetrap/mousetrap'
     },
     waitSeconds: 1,
     shim: {

@@ -1,5 +1,5 @@
 //noinspection JSUnusedLocalSymbols
-define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
+define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 'keys',
         'apps/auth/auth-router', 'apps/main/main-router', 'apps/header/header-controller',
         'apps/list/list-router', 'apps/snippet/snippet-router'],
     function ($, _, Backbone, Marionette, Mustache, app) {
