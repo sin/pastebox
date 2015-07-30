@@ -1,7 +1,7 @@
 define(['underscore', 'backbone', 'moment'], function(_, Backbone, moment) {
     return Backbone.Model.extend({
         urlRoot: '/api/snippets',
-
+        idAttribute: '_id',
         defaults: {
             title: 'untitled',
             description: '',
