@@ -8,7 +8,8 @@ require.config({
         mustache: '../libs/mustache/mustache',
         text: '../libs/requirejs-text/text',
         prism: '../libs/prism/prism',
-        mousetrap: '../libs/mousetrap/mousetrap'
+        mousetrap: '../libs/mousetrap/mousetrap',
+        moment: '../libs/moment/moment'
     },
     waitSeconds: 1,
     shim: {
