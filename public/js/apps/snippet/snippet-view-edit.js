@@ -1,5 +1,5 @@
 define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ace/ace',
-        'text!templates/new-snippet.html', 'models/snippet'],
+        'text!templates/snippet-edit.html', 'models/snippet'],
     function ($, _, Backbone, Marionette, prism, app, ace, template, Model) {
         return Marionette.ItemView.extend({
             tagName: 'span',
@@ -23,22 +23,27 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ac
             },
 
             save: function (event) {
+                var model = this.model;
                 event.preventDefault();
-                model = new Model({
+
+                model.save({
                     title: $('.title')[0].value,
                     description: $('.description')[0].value,
                     language: $('.language')[0].value,
                     code: this.editor.getValue()
-                });
-
-                model.save()
-                    .success(function() {
+                })
+                    .success(function () {
                         app.trigger('snippet:show', model);
                     });
             },
 
             cancel: function (event) {
                 event.preventDefault();
+                if (this.model.get('_id')) {
+                    app.trigger('snippet:show', this.model);
+                } else {
+                    app.main.currentView.content.empty();
+                }
             }
         });
     });

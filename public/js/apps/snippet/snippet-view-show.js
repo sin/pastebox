@@ -21,6 +21,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'te
 
             edit: function (event) {
                 event.preventDefault();
+                app.trigger('snippets:edit', this.model);
             },
 
             delete: function (event) {

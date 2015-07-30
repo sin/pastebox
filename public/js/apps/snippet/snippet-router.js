@@ -4,8 +4,9 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
 
         var Router = Marionette.AppRouter.extend({
             appRoutes: {
-                'snippets/new': 'new',
-                'snippets/id/:id': 'showByID'
+                'snippets/new': 'edit',
+                'snippets/id/:id': 'showByID',
+                'snippets/edit/:id': 'editByID'
             }
         });
 
@@ -25,8 +26,19 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
                 });
             },
 
-            new: function () {
-                controller.new();
+            edit: function (model) {
+                controller.edit(model);
+            },
+
+            editByID: function (id) {
+                var model = new Model({
+                    _id: id
+                });
+                model.fetch({
+                    success: function () {
+                        controller.edit(model);
+                    }
+                });
             }
         };
 
@@ -43,10 +55,16 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
 
         app.on('snippets:new', function () {
             app.navigate('snippets/new', {trigger: false});
-            API.new();
+            API.edit();
+        });
+
+        app.on('snippets:edit', function (model) {
+            app.navigate('snippets/edit/' + model.get('_id'), {trigger: false});
+            API.edit(model);
         });
 
         return {
-            show: API.show
+            show: API.show,
+            edit: API.edit
         };
     });

@@ -3,7 +3,7 @@ define(['underscore', 'backbone', 'moment'], function(_, Backbone, moment) {
         urlRoot: '/api/snippets',
         idAttribute: '_id',
         defaults: {
-            title: 'untitled',
+            title: '',
             description: '',
             created: new Date().getTime(),
             updated: new Date().getTime(),

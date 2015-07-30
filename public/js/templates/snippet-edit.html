@@ -6,8 +6,8 @@
         </div>
     </header>
     <div class="edit-controls">
-        <input type="text" class="form-control title" placeholder="Title">
-        <textarea class="form-control description" name="description" rows="3"></textarea>
+        <input type="text" class="form-control title" placeholder="Title" value="{{title}}">
+        <textarea class="form-control description" name="description" rows="3">{{description}}</textarea>
         <select class="form-control language" name="language" class="lang">
             <option value="javascript">JavaScript</option>
             <option value="css">CSS</option>
@@ -16,5 +16,5 @@
             <option value="text">Text</option>
         </select>
     </div>
-    <textarea id="ace" class="form-control ace" name="code" rows="20"></textarea>
+    <textarea id="ace" class="form-control ace" name="code" rows="20">{{code}}</textarea>
 </form>

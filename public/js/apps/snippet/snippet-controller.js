@@ -1,8 +1,8 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippet/snippet-view',
-        'apps/main/main-router', 'apps/snippet/new-view'],
-    function ($, _, Backbone, Marionette, app, View, mainRouter, NewView) {
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/main-router',
+        'apps/snippet/snippet-view-show', 'apps/snippet/snippet-view-edit', 'models/snippet'],
+    function ($, _, Backbone, Marionette, app, mainRouter, ShowView, EditView, Model) {
         var show = function (model) {
-            view = new View({model: model});
+            var view = new ShowView({model: model});
 
             if (!app.main.hasView()) {
                 mainRouter.show();
@@ -12,8 +12,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippe
             app.main.currentView.content.show(view);
         };
 
-        var newSnippet = function () {
-            view = new NewView();
+        var edit = function (model) {
+            if (!model) {
+                model = new Model();
+            }
+
+            var view = new EditView({model: model});
 
             if (!app.main.hasView()) {
                 mainRouter.show();
@@ -25,6 +29,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippe
 
         return {
             show: show,
-            new: newSnippet
+            edit: edit
         };
     });
