@@ -3,6 +3,9 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
         'apps/auth/auth-router', 'apps/main/main-router', 'apps/header/header-controller',
         'apps/list/list-router', 'apps/snippet/snippet-router'],
     function ($, _, Backbone, Marionette, Mustache, app) {
+        if (window.__agent) {
+            window.__agent.start(Backbone, Marionette);
+        }
 
         app.addRegions({
             main: '.app',
