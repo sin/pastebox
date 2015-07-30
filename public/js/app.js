@@ -1,7 +1,7 @@
 //noinspection JSUnusedLocalSymbols
 define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
         'apps/auth/auth-router', 'apps/main/main-router', 'apps/header/header-controller',
-        'apps/list/list-router'],
+        'apps/list/list-router', 'apps/snippet/snippet-router'],
     function ($, _, Backbone, Marionette, Mustache, app) {
 
         app.addRegions({
@@ -64,7 +64,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
 
         app.on('start', function () {
             Backbone.history.start({pushState: true});
-            console.log('app start');
             app.trigger('header:show');
             var route = app.getCurrentRoute(),
                 token = app.getToken(),
