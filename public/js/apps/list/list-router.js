@@ -3,7 +3,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/list/l
 
         var Router = Marionette.AppRouter.extend({
             appRoutes: {
-                '': 'snippets',
                 'snippets/all': 'snippets',
                 'snippets/starred': 'starred'
             }
@@ -27,7 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/list/l
 
         app.on('snippets:all', function (options) {
             mainCtrl.show();
-            if (!options && !options.silent) {
+            if (!options || !options.silent) {
                 app.navigate('snippets/all', {trigger: false});
             }
         });
