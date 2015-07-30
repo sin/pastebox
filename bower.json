@@ -1,6 +1,6 @@
 {
   "name": "pastebox",
-  "version": "0.0.10",
+  "version": "0.0.29",
   "authors": [
     "Mateusz Sienkan <mateusz@sienkan.pl>"
   ],
@@ -31,6 +31,7 @@
     "requirejs": "~2.1.19",
     "requirejs-text": "~2.0.14",
     "bootstrap": "~3.3.5",
-    "prism": "~1.0.0"
+    "prism": "~1.0.0",
+    "moment": "~2.10.6"
   }
 }

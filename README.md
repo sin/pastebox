@@ -6,6 +6,7 @@ Simple pastebin application.
 ### Prerequisites
 
 * [Node.js](https://nodejs.org)
+* [nodemon](http://nodemon.io/) `npm install nodemon -g`
 * [bower](http://bower.io) `npm install bower -g`
 * [MongoDB](https://www.mongodb.org) `brew install mongodb`
 * [mocha-phantomjs](https://www.npmjs.com/package/mocha-phantomjs) `npm install mocha-phantomjs -g`
@@ -27,7 +28,8 @@ npm test
 ### Run
 
 ```shell
-npm serve
+mongod
+nodemon app.js
 ```
 
 ### Technologies used
@@ -44,6 +46,7 @@ npm serve
 * [PhantomJS](http://phantomjs.org)
 * [mocha-phantomjs](https://www.npmjs.com/package/mocha-phantomjs)
 * [Node.js](https://nodejs.org)
+* [nodemon](http://nodemon.io/)
 * [bower](http://bower.io)
 * [npm](http://npmjs.com)
 * [MongoDB](https://www.mongodb.org)
@@ -53,3 +56,4 @@ npm serve
 * [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 * [Ace](http://ace.c9.io)
 * [Prism](http://prismjs.com)
+* [Moment.js](http://momentjs.com/)

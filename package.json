@@ -1,6 +1,6 @@
 {
   "name": "pastebox",
-  "version": "0.0.10",
+  "version": "0.0.29",
   "description": "Simple pastebin application.",
   "main": "app.js",
   "scripts": {
