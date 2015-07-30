@@ -9,6 +9,10 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
                 click: 'click'
             },
 
+            initialize: function () {
+                this.model.on('change', this.render, this);
+            },
+
             click: function (event) {
                 app.trigger('snippet:show', this.model);
                 $('.snippets-list li').removeClass('active');
