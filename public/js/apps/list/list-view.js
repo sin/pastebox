@@ -3,7 +3,18 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
     function ($, _, Backbone, Marionette, app, compositeTemplate, itemTemplate) {
         var childView = Marionette.ItemView.extend({
             tagName: 'li',
-            template: itemTemplate
+            template: itemTemplate,
+
+            events: {
+                click: 'click'
+            },
+
+            click: function (event) {
+                app.trigger('snippet:show', this.model);
+                $('.snippets-list li').removeClass('active');
+                $(event.currentTarget).addClass('active');
+            }
+
         });
 
         return Marionette.CompositeView.extend({
@@ -11,7 +22,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
             childView: childView,
             childViewContainer: '.snippets-list',
 
-            events: {
-            }
+            events: {}
         });
     });
