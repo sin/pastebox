@@ -44,7 +44,13 @@ module.exports.set = function(api) {
                 return res.send(err);
             }
 
-            res.json(user);
+            User.findById(req.params.id, function(err, user) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(user);
+            });
         });
     });
 

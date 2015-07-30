@@ -3,22 +3,22 @@ var Snippet = require('../models/snippet');
 module.exports.set = function(api) {
 
     api.get('/snippets', function(req, res) {
-        Snippet.find({}, function (err, users) {
+        Snippet.find({}, function (err, snippets) {
             if (err) {
                 return res.send(err);
             }
 
-            res.json(users);
+            res.json(snippets);
         });
     });
 
     api.get('/snippets/:id', function(req, res) {
-        Snippet.findById(req.params.id, function(err, user) {
+        Snippet.findById(req.params.id, function(err, snippet) {
             if (err) {
                 return res.send(err);
             }
 
-            res.json(user);
+            res.json(snippet);
         });
     });
 
@@ -42,12 +42,18 @@ module.exports.set = function(api) {
 
     api.put('/snippets/:id', function(req, res) {
         req.body.updated = Date.now();
-        Snippet.findByIdAndUpdate(req.params.id, req.body, function (err, snippet) {
+        Snippet.findByIdAndUpdate(req.params.id, req.body, function (err) {
             if (err) {
                 return res.send(err);
             }
 
-            res.json(snippet);
+            Snippet.findById(req.params.id, function(err, snippet) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(snippet);
+            });
         });
     });
 
