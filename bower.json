@@ -33,6 +33,7 @@
     "bootstrap": "~3.3.5",
     "prism": "~1.0.0",
     "moment": "~2.10.6",
-    "mousetrap": "~1.5.3"
+    "mousetrap": "~1.5.3",
+    "ace": "~1.2.0"
   }
 }
