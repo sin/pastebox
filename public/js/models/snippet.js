@@ -1,6 +1,6 @@
 define(['underscore', 'backbone'], function(_, Backbone) {
     return Backbone.Model.extend({
-        url: 'snippets',
+        urlRoot: '/api/snippets',
 
         defaults: {
             title: 'untitled',

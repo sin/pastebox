@@ -25,8 +25,11 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/list/l
             });
         });
 
-        app.on('snippets:all', function () {
-            app.navigate('snippets/all', {trigger: true});
+        app.on('snippets:all', function (options) {
+            mainCtrl.show();
+            if (!options && !options.silent) {
+                app.navigate('snippets/all', {trigger: false});
+            }
         });
 
         app.on('snippets:starred', function () {

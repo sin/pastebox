@@ -1,14 +1,27 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippet/snippet-controller'],
-    function ($, _, Backbone, Marionette, app, controller) {
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'apps/snippet/snippet-controller', 'models/snippet'],
+    function ($, _, Backbone, Marionette, app, controller, Model) {
 
         var Router = Marionette.AppRouter.extend({
             appRoutes: {
+                'snippets/id/:id': 'showByID'
             }
         });
 
         var API = {
             show: function (model) {
                 controller.show(model);
+            },
+
+            showByID: function (id) {
+                var model = new Model({
+                    id: id
+                });
+                model.fetch({
+                    success: function () {
+                        controller.show(model);
+                    }
+                });
             }
         };
 
@@ -19,7 +32,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippe
         });
 
         app.on('snippet:show', function (model) {
-            app.navigate('snippets/' + model.get('_id'), {trigger: false});
+            app.navigate('snippets/id/' + model.get('_id'), {trigger: false});
             API.show(model);
         });
 

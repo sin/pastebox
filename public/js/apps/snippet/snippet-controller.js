@@ -6,10 +6,10 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/snippe
 
             if (!app.main.hasView()) {
                 mainRouter.show();
+                app.trigger('snippets:all', { silent: true });
             }
 
             app.main.currentView.content.show(view);
-            console.log('show');
         };
 
         return {
