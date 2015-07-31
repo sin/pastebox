@@ -6,10 +6,15 @@ var mongoose = require('mongoose');
 var config = require('./config.json');
 var jwtAuth = require('./app/libs/jwt-auth');
 var routes = require('./app/routes');
+var rawRoute = require('./app/routes/raw');
 
 var app = express();
 var api = express.Router();
 var auth = express.Router();
+var raw = express.Router();
+
+app.use('/raw/', raw);
+rawRoute.set(raw);
 
 mongoose.connect(config.database);
 

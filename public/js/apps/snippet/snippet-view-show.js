@@ -7,7 +7,6 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism',
             template: template,
 
             events: {
-                'click .link': 'clickLink',
                 'click .fork': 'clickFork',
                 'click .edit': 'clickEdit',
                 'click .delete': 'clickDelete'
@@ -19,11 +18,8 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism',
                 prism.highlightElement(codeEl);
             },
 
-            clickLink: function (event) {
-                event.preventDefault();
-            },
-
             clickFork: function (event) {
+                app.trigger('snippet:fork', this.model);
                 event.preventDefault();
             },
 
