@@ -14,6 +14,8 @@ gulp.task('build:styles', getTask(config.styles, false));
 
 gulp.task('serve', getTask(config.serve));
 
-gulp.task('test', ['watch:test']);
+gulp.task('test', ['build:test', 'watch:test']);
 gulp.task('watch', ['watch:test', 'watch:styles']);
-gulp.task('default', ['serve', 'watch']);
+
+gulp.task('build', ['build:styles']);
+gulp.task('default', ['build']);

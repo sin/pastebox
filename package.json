@@ -1,14 +1,14 @@
 {
   "name": "pastebox",
-  "version": "0.0.29",
+  "version": "0.0.47",
   "description": "Simple pastebin application.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "gulp test",
     "watch": "gulp watch",
     "serve": "gulp serve",
-    "test-mocha": "mocha-phantomjs -R min test/runner.html",
-    "postinstall" : "bower install"
+    "postinstall": "bower install; gulp build"
   },
   "repository": {
     "type": "git",
