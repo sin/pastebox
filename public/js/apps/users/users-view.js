@@ -1,24 +1,11 @@
 define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
-        'text!templates/users.html', 'text!templates/users-item.html'],
-    function ($, _, Backbone, Marionette, app, compositeTemplate, itemTemplate) {
-        var childView = Marionette.ItemView.extend({
-            tagName: 'li',
-            template: itemTemplate,
-
-            events: {
-                click: 'click'
-            },
-
-            click: function (event) {
-                event.preventDefault();
-                app.trigger('snippets:user', this.model);
-            }
-
-        });
+        'apps/users/users-view-item', 'text!templates/users-view.html'],
+    function ($, _, Backbone, Marionette, app, ChildView, template) {
 
         return Marionette.CompositeView.extend({
-            template: compositeTemplate,
-            childView: childView,
+            template: template,
+            childView: ChildView,
             childViewContainer: '.users-list'
         });
+
     });

@@ -1,31 +1,37 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'text!templates/login.html'],
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'text!templates/auth-login.html'],
     function ($, _, Backbone, Marionette, app, template) {
+
         return Marionette.ItemView.extend({
             className: 'login column',
             template: template,
 
             events: {
-                'click .signup-link': 'signupLink',
-                'submit .login-form': 'loginForm'
+                'click .signup-link': 'clickSignupLink',
+                'submit .login-form': 'submitForm'
             },
 
-            signupLink: function (event) {
-                event.preventDefault();
+            clickSignupLink: function (event) {
                 app.trigger('auth:signup');
+                event.preventDefault();
             },
 
-            loginForm: function (event) {
-                event.preventDefault();
-                $.post('auth/login', $('.login-form').serialize())
+            submitForm: function (event) {
+                var serializedForm = this.$el.find('.login-form').serialize();
+
+                $.post('/auth/login', serializedForm)
                     .done(function(req) {
                         app.setToken(req.token);
                         app.setUser(req.user);
-                        app.trigger('main');
+                        app.trigger('main:show');
                         app.trigger('header:update');
                     })
                     .fail(function() {
                         $('.control-group').addClass('has-error');
                     });
+
+                event.preventDefault();
             }
         });
+
     });

@@ -1,17 +1,18 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ace/ace',
-        'text!templates/snippet-edit.html', 'models/snippet'],
-    function ($, _, Backbone, Marionette, prism, app, ace, template, Model) {
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism', 'ace/ace',
+        'text!templates/snippet-edit.html'],
+    function ($, _, Backbone, Marionette, app, prism, ace, template) {
+
         return Marionette.ItemView.extend({
             tagName: 'span',
             template: template,
 
             events: {
-                'click .save': 'save',
-                'click .cancel': 'cancel'
+                'click .save': 'cliclSave',
+                'click .cancel': 'clickCancel'
             },
 
             onRender: function () {
-                var editorEl = $(this.el).find('#ace')[0],
+                var editorEl = this.$el.find('#ace')[0],
                     editor = ace.edit(editorEl);
 
                 this.editor = editor;
@@ -19,10 +20,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ac
             },
 
             onShow: function () {
-                $(this.el).find('.title')[0].focus();
+                var titleEl = this.$el.find('.title')[0];
+
+                titleEl.focus();
             },
 
-            save: function (event) {
+            cliclSave: function (event) {
                 var model = this.model;
                 event.preventDefault();
 
@@ -37,7 +40,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ac
                     });
             },
 
-            cancel: function (event) {
+            clickCancel: function (event) {
                 event.preventDefault();
                 if (this.model.get('_id')) {
                     app.trigger('snippet:show', this.model);
@@ -46,4 +49,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'ac
                 }
             }
         });
+
     });

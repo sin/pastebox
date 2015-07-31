@@ -1,15 +1,17 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 'text!templates/header.html'],
+define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
+        'text!templates/header-show.html'],
     function ($, _, Backbone, Marionette, Mustache, app, template) {
+
         return Marionette.ItemView.extend({
             className: 'container-fluid',
             template: template,
 
             events: {
-                'click .navbar-brand': 'brand',
-                'click .profile-link': 'profile',
-                'click .logout-link': 'logout',
-                'click .login-link': 'login',
-                'click .signup-link': 'signup'
+                'click .navbar-brand': 'clickLogo',
+                'click .profile-link': 'clickProfile',
+                'click .logout-link': 'clickLogout',
+                'click .login-link': 'clickLogin',
+                'click .signup-link': 'clickSignup'
             },
 
             serializeData: function () {
@@ -18,31 +20,32 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                 };
             },
 
-            brand: function (event) {
+            clickLogo: function (event) {
+                app.getUser() ? app.trigger('main:show') : app.trigger('auth:login');
                 event.preventDefault();
-                app.getUser() ? app.trigger('main') : app.trigger('auth:login');
             },
 
-            profile: function (event) {
-                event.preventDefault();
+            clickProfile: function (event) {
                 app.trigger('profile');
+                event.preventDefault();
             },
 
-            logout: function (event) {
-                event.preventDefault();
+            clickLogout: function (event) {
                 app.clearSession();
                 this.render();
                 app.trigger('auth:login');
+                event.preventDefault();
             },
 
-            login: function (event) {
-                event.preventDefault();
+            clickLogin: function (event) {
                 app.trigger('auth:login');
+                event.preventDefault();
             },
 
-            signup: function (event) {
-                event.preventDefault();
+            clickSignup: function (event) {
                 app.trigger('auth:signup');
+                event.preventDefault();
             }
         });
+
     });

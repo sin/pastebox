@@ -1,26 +1,28 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/header/header-view'],
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'apps/header/header-view'],
     function ($, _, Backbone, Marionette, app, View) {
-        var view;
 
-        var show = function () {
-            view = new View();
-            app.header.show(view);
-        };
+        var view,
+            show = function () {
+                view = new View();
+                app.header.show(view);
+            },
 
-        var update = function () {
-            view.render();
-        };
-
-        app.on('header:update', function () {
-            update();
-        });
+            update = function () {
+                view.render();
+            };
 
         app.on('header:show', function () {
             show();
+        });
+
+        app.on('header:update', function () {
+            update();
         });
 
         return {
             show: show,
             update: update
         };
+
     });

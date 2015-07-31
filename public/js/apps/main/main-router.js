@@ -1,29 +1,24 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/main-controller'],
-    function ($, _, Backbone, Marionette, app, mainCtrl) {
-
-        var Router = Marionette.AppRouter.extend({
-            appRoutes: {
-                '': 'show'
-            }
-        });
-
-        var API = {
-            show: function () {
-                mainCtrl.show();
-            }
-        };
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'apps/main/main-controller'],
+    function ($, _, Backbone, Marionette, app, controller) {
 
         app.addInitializer(function () {
-            new Router({
-                controller: API
+            var Router = Marionette.AppRouter.extend({
+                appRoutes: {
+                    '': 'show'
+                },
+                controller: {
+                    show: function () {
+                        controller.show();
+                    }
+                }
             });
+
+            new Router();
         });
 
-        app.on('main', function () {
+        app.on('main:show', function () {
             app.navigate('', {trigger: true});
         });
 
-        return {
-            show: API.show
-        };
     });

@@ -1,10 +1,14 @@
-define(['underscore', 'backbone', 'models/user'], function (_, Backbone, user) {
-    return Backbone.Collection.extend({
-        model: user,
-        url: '/api/users',
+define(['jquery', 'underscore', 'backbone', 'marionette',
+        'models/user'],
+    function ($, _, Backbone, Marionette, Model) {
 
-        initialize: function () {
-            this.fetch();
-        }
+        return Backbone.Collection.extend({
+            model: Model,
+            url: '/api/users',
+
+            initialize: function () {
+                this.fetch();
+            }
+        });
+
     });
-});

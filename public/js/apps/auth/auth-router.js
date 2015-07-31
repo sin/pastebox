@@ -1,28 +1,25 @@
 define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
-        'apps/auth/login-controller', 'apps/auth/signup-controller'],
-    function ($, _, Backbone, Marionette, app, loginCtrl, signupCtrl) {
-
-        var Router = Marionette.AppRouter.extend({
-            appRoutes: {
-                login: 'login',
-                signup: 'signup'
-            }
-        });
-
-        var API = {
-            login: function () {
-                loginCtrl.show();
-            },
-
-            signup: function () {
-                signupCtrl.show();
-            }
-        };
+        'apps/auth/auth-controller'],
+    function ($, _, Backbone, Marionette, app, controller) {
 
         app.addInitializer(function () {
-            new Router({
-                controller: API
+            var Router = Marionette.AppRouter.extend({
+                appRoutes: {
+                    login: 'login',
+                    signup: 'signup'
+                },
+                controller: {
+                    login: function () {
+                        controller.login();
+                    },
+
+                    signup: function () {
+                        controller.signup();
+                    }
+                }
             });
+
+            new Router();
         });
 
         app.on('auth:login', function () {
@@ -32,4 +29,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
         app.on('auth:signup', function () {
             app.navigate('signup', {trigger: true});
         });
+
     });

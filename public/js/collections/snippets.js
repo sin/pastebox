@@ -1,10 +1,14 @@
-define(['underscore', 'backbone', 'models/snippet'], function (_, Backbone, snippet) {
-    return Backbone.Collection.extend({
-        model: snippet,
-        url: '/api/snippets',
+define(['jquery', 'underscore', 'backbone', 'marionette',
+        'models/snippet'],
+    function ($, _, Backbone, Marionette, Model) {
 
-        initialize: function () {
-            this.fetch();
-        }
+        return Backbone.Collection.extend({
+            model: Model,
+            url: '/api/snippets',
+
+            initialize: function () {
+                this.fetch();
+            }
+        });
+
     });
-});

@@ -1,13 +1,17 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/users/users-view',
-        'apps/main/main-router', 'collections/users'],
-    function ($, _, Backbone, Marionette, app, View, mainRouter, Users) {
-        var show = function () {
-            var users = new Users(),
-                view = new View({collection: users});
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'apps/main/main-controller',
+        'collections/users',
+        'apps/users/users-view'],
+    function ($, _, Backbone, Marionette, app, mainController, Collection, View) {
 
-            app.users = users;
+        var show = function () {
+            var collection = new Collection(),
+                view = new View({collection: collection});
+
+            app.users = collection;
+
             if (!app.main.hasView()) {
-                mainRouter.show();
+                mainController.show();
             }
 
             app.main.currentView.users.show(view);
@@ -20,4 +24,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/users/
         return {
             show: show
         };
+
     });

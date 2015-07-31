@@ -1,39 +1,45 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'prism', 'global', 'text!templates/snippet.html'],
-    function ($, _, Backbone, Marionette, prism, app, template) {
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism',
+        'text!templates/snippet-show.html'],
+    function ($, _, Backbone, Marionette, app, prism, template) {
+
         return Marionette.ItemView.extend({
             tagName: 'span',
             template: template,
 
             events: {
-                'click .link': 'link',
-                'click .fork': 'fork',
-                'click .edit': 'edit',
-                'click .delete': 'delete'
-            },
-
-            link: function (event) {
-                event.preventDefault();
-            },
-
-            fork: function (event) {
-                event.preventDefault();
-            },
-
-            edit: function (event) {
-                event.preventDefault();
-                app.trigger('snippets:edit', this.model);
-            },
-
-            delete: function (event) {
-                event.preventDefault();
-                this.model.destroy()
-                    .success(function () {
-                        app.trigger('snippets:new');
-                    });
+                'click .link': 'clickLink',
+                'click .fork': 'clickFork',
+                'click .edit': 'clickEdit',
+                'click .delete': 'clickDelete'
             },
 
             onRender: function () {
-                prism.highlightElement($(this.el).find('code')[0]);
+                var codeEl = this.$el.find('code')[0];
+
+                prism.highlightElement(codeEl);
+            },
+
+            clickLink: function (event) {
+                event.preventDefault();
+            },
+
+            clickFork: function (event) {
+                event.preventDefault();
+            },
+
+            clickEdit: function (event) {
+                app.trigger('snippet:edit', this.model);
+                event.preventDefault();
+            },
+
+            clickDelete: function (event) {
+                this.model.destroy()
+                    .success(function () {
+                        app.trigger('snippet:new');
+                    });
+
+                event.preventDefault();
             }
+
         });
     });

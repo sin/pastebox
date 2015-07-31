@@ -1,34 +1,44 @@
-define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/main-router',
-        'apps/snippet/snippet-view-show', 'apps/snippet/snippet-view-edit', 'models/snippet'],
-    function ($, _, Backbone, Marionette, app, mainRouter, ShowView, EditView, Model) {
-        var show = function (model) {
-            var view = new ShowView({model: model});
+define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
+        'apps/main/main-controller',
+        'apps/snippet/snippet-view-show', 'apps/snippet/snippet-view-edit',
+        'models/snippet'],
+    function ($, _, Backbone, Marionette, app, mainController, ShowView, EditView, Model) {
 
-            if (!app.main.hasView()) {
-                mainRouter.show();
-                app.trigger('snippets:all', { silent: true });
+        var createModel = function (model, View) {
+            if (typeof model === 'string') {
+                var id = model;
+                model = new Model({
+                    _id: id
+                });
+                model.fetch({
+                    success: function (model) {
+                        renderView(model, View);
+                    }
+                });
+            } else {
+                renderView(model, View);
             }
-
-            app.main.currentView.content.show(view);
         };
 
-        var edit = function (model) {
-            if (!model) {
-                model = new Model();
-            }
-
-            var view = new EditView({model: model});
+        var renderView = function (model, View) {
+            var view = new View({model: model});
 
             if (!app.main.hasView()) {
-                mainRouter.show();
-                app.trigger('snippets:all', { silent: true });
+                mainController.show();
+                app.trigger('snippets:all', {silent: true});
             }
 
             app.main.currentView.content.show(view);
         };
 
         return {
-            show: show,
-            edit: edit
+            show: function (model) {
+                createModel(model, ShowView);
+            },
+
+            edit: function (model) {
+                createModel(model, EditView);
+            }
         };
+
     });

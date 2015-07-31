@@ -1,31 +1,38 @@
-define(['underscore', 'backbone', 'moment'], function (_, Backbone, moment) {
-    return Backbone.Model.extend({
-        urlRoot: '/api/snippets',
-        idAttribute: '_id',
-        defaults: {
-            title: '',
-            description: '',
-            created: new Date().getTime(),
-            updated: new Date().getTime(),
-            starred: false,
-            language: 'text',
-            code: ''
-        },
+define(['jquery', 'underscore', 'backbone', 'marionette', 'moment'],
+    function ($, _, Backbone, Marionette, moment) {
 
-        parse: function (model) {
-            model.createdFromNow = moment(model.created).fromNow();
+        return Backbone.Model.extend({
+            urlRoot: '/api/snippets',
+            idAttribute: '_id',
 
-            if (model.updated) {
-                model.updatedFromNow = moment(model.updated).fromNow();
+            defaults: {
+                title: '',
+                description: '',
+                created: new Date().getTime(),
+                updated: new Date().getTime(),
+                starred: false,
+                language: 'text',
+                code: ''
+            },
+
+            parse: function (model) {
+                var friendlyCreated = moment(model.created).fromNow(),
+                    friendlyUpdated = moment(model.updated).fromNow();
+
+                model.createdFromNow = friendlyCreated;
+
+                if (model.updated) {
+                    model.updatedFromNow = friendlyUpdated;
+                }
+
+                return model;
+            },
+
+            validate: function (attrs) {
+                if (_.isEmpty(attrs.code)) {
+                    return 'Empty snippet';
+                }
             }
+        });
 
-            return model;
-        },
-
-        validate: function (attrs) {
-            if (_.isEmpty(attrs.code)) {
-                return 'Empty snippet';
-            }
-        }
     });
-});

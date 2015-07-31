@@ -1,6 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
-        'text!templates/main.html'],
+        'text!templates/main-show.html'],
     function ($, _, Backbone, Marionette, app, template) {
+
         return Marionette.LayoutView.extend({
             template: template,
             className: 'main-flex-wrapper',
@@ -12,24 +13,25 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
             },
 
             events: {
-                'click .new-snippet-link': 'newSnippet',
-                'click .all-snippets-link': 'allSnippets',
-                'click .starred-snippets-link': 'starredSnippets'
+                'click .new-snippet-link': 'clickNewSnippet',
+                'click .all-snippets-link': 'clickAllSnippets',
+                'click .starred-snippets-link': 'clickStarredSnippets'
             },
 
-            newSnippet: function (event) {
+            clickNewSnippet: function (event) {
+                app.trigger('snippet:new');
                 event.preventDefault();
-                app.trigger('snippets:new');
             },
 
-            allSnippets: function (event) {
-                event.preventDefault();
+            clickAllSnippets: function (event) {
                 app.trigger('snippets:all');
+                event.preventDefault();
             },
 
-            starredSnippets: function (event) {
-                event.preventDefault();
+            clickStarredSnippets: function (event) {
                 app.trigger('snippets:starred');
+                event.preventDefault();
             }
         });
+
     });

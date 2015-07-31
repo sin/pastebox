@@ -12,7 +12,7 @@ require.config({
         moment: '../libs/moment/moment',
         ace: '../libs/ace/lib/ace/'
     },
-    waitSeconds: 1,
+    waitSeconds: 3,
     shim: {
         prism: {
             exports: 'Prism'
