@@ -1,6 +1,9 @@
 <aside class="pull-right"><span class="glyphicon glyphicon-star-empty"></span></aside>
 <header>
     <h2>{{title}}</h2>
-    <span>Created {{createdFromNow}} by <a href="#">{{author}}</a></span>
+    <span>
+        Created {{createdFromNow}} by <a href="#">{{author}}</a>
+        {{#updatedFromNow}} – Updated {{updatedFromNow}}{{/updatedFromNow}}
+    </span>
 </header>
 <p>{{description}}</p>

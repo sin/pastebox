@@ -12,9 +12,9 @@ define(['js/models/Snippet'], function(Model) {
             this.model.get('description').should.equal('Description');
         });
 
-        it('should have default title', function() {
+        it('should have empty title by default', function() {
             this.model = new Model({description: 'Description', code: '.span { color: red; }'});
-            this.model.get('title').should.equal('untitled');
+            this.model.get('title').should.equal('');
         });
 
         it('should error when empty', function() {

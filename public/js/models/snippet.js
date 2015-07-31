@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'moment'], function(_, Backbone, moment) {
+define(['underscore', 'backbone', 'moment'], function (_, Backbone, moment) {
     return Backbone.Model.extend({
         urlRoot: '/api/snippets',
         idAttribute: '_id',
@@ -14,10 +14,15 @@ define(['underscore', 'backbone', 'moment'], function(_, Backbone, moment) {
 
         parse: function (model) {
             model.createdFromNow = moment(model.created).fromNow();
+
+            if (model.updated) {
+                model.updatedFromNow = moment(model.updated).fromNow();
+            }
+
             return model;
         },
 
-        validate: function(attrs) {
+        validate: function (attrs) {
             if (_.isEmpty(attrs.code)) {
                 return 'Empty snippet';
             }
