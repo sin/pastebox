@@ -3,7 +3,10 @@ var Snippet = require('../models/snippet');
 module.exports.set = function(api) {
 
     api.get('/snippets', function(req, res) {
-        Snippet.find({}, function (err, snippets) {
+        var p = req.query,
+            sort = (p.sortOrder == 1) ? ('-' + p.sortBy) : (p.sortBy);
+
+        Snippet.find({}).sort(sort).exec(function (err, snippets) {
             if (err) {
                 return res.send(err);
             }
@@ -28,7 +31,12 @@ module.exports.set = function(api) {
             description: req.body.description,
             updated: null,
             language: req.body.language,
-            code: req.body.code
+            code: req.body.code,
+            author: {
+                _id: req.user._id,
+                username: req.user.username,
+                email: req.user.email
+            }
         });
 
         snippet.save(function(err, snippet) {

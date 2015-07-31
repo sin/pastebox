@@ -2,7 +2,7 @@
 <header>
     <h2>{{title}}</h2>
     <span>
-        Created {{createdFromNow}} by <a href="#">{{author}}</a>
+        Created {{createdFromNow}} by {{#author}}<a data-id="{{_id}}" href="/users/id/{{_id}}">{{username}}</a>{{/author}}
         {{#updatedFromNow}} – Updated {{updatedFromNow}}{{/updatedFromNow}}
     </span>
 </header>
