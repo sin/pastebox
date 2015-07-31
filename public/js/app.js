@@ -1,7 +1,7 @@
 //noinspection JSUnusedLocalSymbols
 define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 'keys',
         'apps/auth/auth-router', 'apps/main/main-router', 'apps/header/header-controller',
-        'apps/list/list-router', 'apps/snippet/snippet-router'],
+        'apps/list/list-router', 'apps/snippet/snippet-router', 'apps/users/users-controller'],
     function ($, _, Backbone, Marionette, Mustache, app) {
         if (window.__agent) {
             window.__agent.start(Backbone, Marionette);

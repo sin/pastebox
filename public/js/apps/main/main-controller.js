@@ -4,6 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'apps/main/m
             var view = new View();
             app.main.show(view);
             app.trigger('snippets:all', { silent: true });
+            app.trigger('users:show', { silent: true });
         };
 
         return {
