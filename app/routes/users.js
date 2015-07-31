@@ -3,7 +3,7 @@ var User = require('../models/user');
 module.exports.set = function(api) {
 
     api.get('/users', function(req, res) {
-        User.find({}, function (err, users) {
+        User.find({}, { password: 0 }, function (err, users) {
             if (err) {
                 return res.send(err);
             }
@@ -13,7 +13,7 @@ module.exports.set = function(api) {
     });
 
     api.get('/users/:id', function(req, res) {
-        User.findById(req.params.id, function(err, user) {
+        User.findById(req.params.id, { password: 0 }, function(err, user) {
             if (err) {
                 return res.send(err);
             }
@@ -39,12 +39,12 @@ module.exports.set = function(api) {
     });
 
     api.put('/users/:id', function(req, res) {
-        User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+        User.findByIdAndUpdate(req.params.id, req.body, function (err) {
             if (err) {
                 return res.send(err);
             }
 
-            User.findById(req.params.id, function(err, user) {
+            User.findById(req.params.id, { password: 0 }, function(err, user) {
                 if (err) {
                     return res.send(err);
                 }
