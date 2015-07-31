@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism', 'ac
             template: template,
 
             events: {
-                'click .save': 'cliclSave',
+                'click .save': 'clickSave',
                 'click .cancel': 'clickCancel'
             },
 
@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global', 'prism', 'ac
                 titleEl.focus();
             },
 
-            cliclSave: function (event) {
+            clickSave: function (event) {
                 var model = this.model;
                 event.preventDefault();
 

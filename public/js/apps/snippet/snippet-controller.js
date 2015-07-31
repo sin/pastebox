@@ -15,6 +15,13 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
                         renderView(model, View);
                     }
                 });
+            } else if (model === undefined) {
+                model = new Model();
+                model.fetch({
+                    success: function (model) {
+                        renderView(model, View);
+                    }
+                });
             } else {
                 renderView(model, View);
             }
