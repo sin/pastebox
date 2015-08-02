@@ -1,12 +1,24 @@
 var Snippet = require('../models/snippet');
 
-module.exports.set = function(api) {
+module.exports.set = function (api) {
 
-    api.get('/snippets', function(req, res) {
-        var p = req.query,
+    api.get('/snippets', function (req, res) {
+        var find, p = req.query,
             sort = (p.sortOrder == 1) ? ('-' + p.sortBy) : (p.sortBy);
 
-        Snippet.find({}).sort(sort).exec(function (err, snippets) {
+        if (p.filterBy == 'user' && p.filterInvert === 'true') {
+            find = {'author._id': {$not: {$eq: p.filter}}};
+        } else if (p.filterBy == 'user') {
+            find = {'author._id': p.filter};
+        } else {
+            find = {};
+        }
+
+        if (p.search) {
+            find.code = new RegExp('^' + p.search);
+        }
+
+        Snippet.find(find).sort(sort).exec(function (err, snippets) {
             if (err) {
                 return res.send(err);
             }
@@ -15,8 +27,8 @@ module.exports.set = function(api) {
         });
     });
 
-    api.get('/snippets/:id', function(req, res) {
-        Snippet.findById(req.params.id, function(err, snippet) {
+    api.get('/snippets/:id', function (req, res) {
+        Snippet.findById(req.params.id, function (err, snippet) {
             if (err) {
                 return res.send(err);
             }
@@ -25,7 +37,7 @@ module.exports.set = function(api) {
         });
     });
 
-    api.post('/snippets', function(req, res) {
+    api.post('/snippets', function (req, res) {
         var snippet = new Snippet({
             title: req.body.title,
             description: req.body.description,
@@ -39,7 +51,7 @@ module.exports.set = function(api) {
             }
         });
 
-        snippet.save(function(err, snippet) {
+        snippet.save(function (err, snippet) {
             if (err) {
                 return res.send(err);
             }
@@ -48,14 +60,14 @@ module.exports.set = function(api) {
         });
     });
 
-    api.put('/snippets/:id', function(req, res) {
+    api.put('/snippets/:id', function (req, res) {
         req.body.updated = Date.now();
         Snippet.findByIdAndUpdate(req.params.id, req.body, function (err) {
             if (err) {
                 return res.send(err);
             }
 
-            Snippet.findById(req.params.id, function(err, snippet) {
+            Snippet.findById(req.params.id, function (err, snippet) {
                 if (err) {
                     return res.send(err);
                 }
@@ -65,7 +77,7 @@ module.exports.set = function(api) {
         });
     });
 
-    api.delete('/snippets/:id', function(req, res) {
+    api.delete('/snippets/:id', function (req, res) {
         Snippet.findByIdAndRemove(req.params.id, req.body, function (err, snippet) {
             if (err) {
                 return res.send(err);
