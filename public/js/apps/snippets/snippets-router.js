@@ -1,21 +1,31 @@
 define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
         'apps/snippets/snippets-controller'],
-    function ($, _, Backbone, Marionette, app, mainController) {
+    function ($, _, Backbone, Marionette, app, controller) {
 
         app.addInitializer(function () {
             var Router = Marionette.AppRouter.extend({
                 appRoutes: {
                     'snippets/all': 'snippets',
-                    'snippets/starred': 'starred'
+                    'snippets/starred': 'starred',
+                    'snippets/user/:id': 'user',
+                    'snippets/search/:search': 'search'
                 },
 
                 controller: {
                     snippets: function () {
-                        mainController.show();
+                        controller.showAll();
                     },
 
                     starred: function () {
-                        mainController.show('starred');
+                        controller.starred();
+                    },
+
+                    user: function (id) {
+                        controller.user(id);
+                    },
+
+                    search: function (keyword) {
+                        controller.search(keyword);
                     }
                 }
             });
@@ -24,7 +34,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
         });
 
         app.on('snippets:all', function (options) {
-            mainController.show();
+            controller.showAll();
             if (!options || !options.silent) {
                 app.navigate('snippets/all', {trigger: false});
             }
@@ -32,6 +42,17 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
 
         app.on('snippets:starred', function () {
             app.navigate('snippets/all', {trigger: true});
+        });
+
+        app.on('snippets:user', function (user) {
+            var id = user.get('_id');
+            app.navigate('snippets/user/' + id, {trigger: false});
+            controller.user(id);
+        });
+
+        app.on('snippets:search', function (keyword) {
+            app.navigate('snippets/search/' + keyword, {trigger: false});
+            controller.search(keyword);
         });
 
     });

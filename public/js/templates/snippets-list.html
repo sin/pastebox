@@ -1,8 +1,10 @@
 <div class="filter-bar">
     <div class="btn-group btn-group-sm" role="group" aria-label="Filters">
-        <button type="button" data-filter="all" class="filter btn btn-default active">All</button>
-        <button type="button" data-filter="mine" class="filter btn btn-default">Mine</button>
-        <button type="button" data-filter="other" class="filter btn btn-default">Other</button>
+        {{#filtering}}
+        <button type="button" data-filter="all" class="filter btn btn-default {{#all}}active{{/all}}">All</button>
+        <button type="button" data-filter="mine" class="filter btn btn-default {{#mine}}active{{/mine}}">Mine</button>
+        <button type="button" data-filter="other" class="filter btn btn-default {{#others}}active{{/others}}">Other</button>
+        {{/filtering}}
     </div>
     <div class="btn-group btn-group-sm pull-right" role="group" aria-label="Filters">
         <button type="button" data-sort="created" class="sort btn btn-default {{#created}}active{{/created}}">

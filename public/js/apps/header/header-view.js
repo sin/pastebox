@@ -11,7 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
                 'click .profile-link': 'clickProfile',
                 'click .logout-link': 'clickLogout',
                 'click .login-link': 'clickLogin',
-                'click .signup-link': 'clickSignup'
+                'click .signup-link': 'clickSignup',
+                'submit .search': 'submitSearchForm'
             },
 
             serializeData: function () {
@@ -44,6 +45,15 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global',
 
             clickSignup: function (event) {
                 app.trigger('auth:signup');
+                event.preventDefault();
+            },
+
+            submitSearchForm: function (event) {
+                var searchKeyword = this.$el.find('.search-input')[0].value;
+                if (searchKeyword.length > 0) {
+                    app.trigger('snippets:search', searchKeyword);
+                }
+
                 event.preventDefault();
             }
         });

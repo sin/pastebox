@@ -4,11 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette',
 
         return Backbone.Collection.extend({
             model: Model,
-            url: '/api/snippets',
-
-            initialize: function () {
-                this.fetch();
-            }
+            url: '/api/snippets'
         });
 
     });

@@ -16,7 +16,8 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
                 appRoutes: {
                     'snippets/new': 'edit',
                     'snippets/id/:id': 'show',
-                    'snippets/edit/:id': 'edit'
+                    'snippets/edit/:id': 'edit',
+                    'snippets/fork/:id': 'edit'
                 },
                 controller: API
             });
@@ -39,6 +40,12 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'global',
         app.on('snippet:edit', function (model) {
             var id = model.get('_id');
             app.navigate('snippets/edit/' + id, {trigger: false});
+            API.edit(model);
+        });
+
+        app.on('snippet:fork', function (model) {
+            var id = model.get('_id');
+            app.navigate('snippets/fork/' + id, {trigger: false});
             API.edit(model);
         });
 
