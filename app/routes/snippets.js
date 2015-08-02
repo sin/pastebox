@@ -15,7 +15,7 @@ module.exports.set = function (api) {
         }
 
         if (p.search) {
-            find.code = new RegExp('^' + p.search);
+            find.code = new RegExp(p.search);
         }
 
         Snippet.find(find).sort(sort).exec(function (err, snippets) {
