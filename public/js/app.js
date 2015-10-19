@@ -81,7 +81,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
                             var redirect = (route === 'login' || route === 'signup');
                             route = redirect ? '' : route;
                             app.setUser(res);
-                            app.navigate(route, {trigger: true});
+                            Backbone.history.loadUrl(route);
                         },
 
                         error: function () {
