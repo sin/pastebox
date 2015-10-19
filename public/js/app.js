@@ -66,7 +66,7 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'mustache', 'global', 
         };
 
         app.on('start', function () {
-            Backbone.history.start({pushState: true});
+            Backbone.history.start({pushState: true, silent: true});
             app.trigger('header:show');
             var route = app.getCurrentRoute(),
                 token = app.getToken(),
